@@ -1,8 +1,14 @@
 import { Router } from 'express';
 import UserController from '../controllers/usersController';
+import validBody from '../middlers/loginOk';
 
-const user = new UserController();
 const router = Router();
-router.post('/', user.login);
+const user = new UserController();
+// com instancia e sem
+// -----------GET----------------
+
+// -----------POST---------------
+router.post('/', validBody.validation, user.login);
+// -----------PUT----------------
 
 export default router;

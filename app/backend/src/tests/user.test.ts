@@ -7,6 +7,7 @@ import chaiHttp = require('chai-http');
 import { app } from '../app';
 import userModel from '../database/models/Users';
 import { Response } from 'superagent';
+import http from '../utils/metodosHttp';
 
 chai.use(chaiHttp);
 const { expect } = chai;
@@ -33,6 +34,6 @@ describe('Testando rota /login', () => {
         "email": "admin@admin.com",
         "password":"secret_admin"
     })
-    expect(chaiHttpResponse.status).to.equal(200)
+    expect(chaiHttpResponse.status).to.equal(http.okStatus)
   });
 });
