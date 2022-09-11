@@ -1,14 +1,14 @@
 import { Router } from 'express';
 import UserController from '../controllers/usersController';
-import validBody from '../middlers/loginOk';
+// import validBody from '../middlers/loginOk';
+// exemplo de com instancia e sem no controller e no middler
 
 const router = Router();
 const user = new UserController();
-// com instancia e sem
 // -----------GET----------------
 
 // -----------POST---------------
-router.post('/', validBody.validation, user.login);
+router.post('/', user.login);
 // -----------PUT----------------
 
 export default router;

@@ -19,8 +19,8 @@ const userReturn = {
     password: '$2a$08$xi.Hxk1czAO0nZR..B393u10aED0RQ1N3PAEXQ7HxtLjKPEZBu.PW'
   }
 
-describe('Testando rota /login', () => {
-  let chaiHttpResponse: Response;
+describe('Testando rota /login no metodo POST', () => {
+  let chaiRequest: Response;
 
   before(async () => {
     sinon.stub(userModel, "findOne").resolves(userReturn as userModel);
@@ -29,11 +29,39 @@ describe('Testando rota /login', () => {
 
   after(()=>{(userModel.findOne as sinon.SinonStub).restore()})
 
-  it('O usuario existe', async () => {
-    chaiHttpResponse = await chai.request(app).post("/login").send({
-        "email": "admin@admin.com",
-        "password":"secret_admin"
+  it("O usuario nao existe no banco", async () => {
+    chaiRequest = await chai.request(app).post("/login").send({
+      email: "xablau@helloMundo.com",
+      password: "123456",
+    });
+    expect(chaiRequest.status).to.equal(http.unauthorize);
+    expect(chaiRequest.body).to.deep.equal({message:"Incorrect email or passwordd"});
+  });
+
+  it('O usuario existe no banco', async () => {
+    chaiRequest = await chai.request(app).post("/login").send({
+        email: "admin@admin.com",
+        password:"secret_admin"
     })
-    expect(chaiHttpResponse.status).to.equal(http.okStatus)
+    expect(chaiRequest.status).to.equal(http.okStatus)
+    // espera retornar um objeto com o token {'token': "jnbasidfbasiufb"}
+  });
+
+  it('Campo email preenchido', async () => {
+    chaiRequest = await chai.request(app).post("/login").send({
+      email: "",
+      password:"secret_admin"
+  })
+  expect(chaiRequest.status).to.be.equal(http.badRequest);
+  expect(chaiRequest.body).to.deep.equal({message:"All fields must be filled"});
+  });
+
+  it('Campo password preenchido', async () => {
+    chaiRequest = await chai.request(app).post("/login").send({
+      email: "admin@admin.com",
+      password:""
+  })
+  expect(chaiRequest.status).to.be.equal(http.badRequest);
+  expect(chaiRequest.body).to.deep.equal({message:"All fields must be filled"});
   });
 });
