@@ -6,7 +6,7 @@ import Jwt from '../utils/jwt';
 export default class UsersService {
   static async login(email: string, password: string) {
     const user = await User.findOne({ where: { email } });
-    console.log('ssss', user);
+    // console.log('ssss', user);
     // console.log('senha do banco', user?.password);
     // console.log('senha do user', password);
     if (!user) {

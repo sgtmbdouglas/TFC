@@ -8,7 +8,7 @@ const user = new UserController();
 // -----------GET----------------
 
 // -----------POST---------------
-router.post('/', user.login);
+router.post('/', (req, res) => user.login(req, res));
 // -----------PUT----------------
 
 export default router;

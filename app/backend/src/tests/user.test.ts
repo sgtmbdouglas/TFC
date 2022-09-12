@@ -18,8 +18,8 @@ const userReturn = {
     email: 'admin@admin.com',
     password: '$2a$08$xi.Hxk1czAO0nZR..B393u10aED0RQ1N3PAEXQ7HxtLjKPEZBu.PW'
   }
-
-describe('Testando rota /login no metodo POST', () => {
+// testando rotas
+describe('Testando rota /login usando verbo POST', () => {
   let chaiRequest: Response;
 
   before(async () => {

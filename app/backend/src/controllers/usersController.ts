@@ -5,7 +5,12 @@ import http from '../utils/metodosHttp';
 export default class UserController {
   // metodo estatico = nao pertence a instacia da classe, intancia quando coloca o new class, posso chamar a funcao direto
   // linter reclama sem o this se eu usar public e vou prescisar instanciar para usar na rota
-  message1 = { message: 'All fields must be filledd' };
+  message1 = { message: 'All fields must be filled' };
+  message2 = { message: 'Incorrect email or passwordd' };
+  // para nao usar arrow func na rota por conta da classe com express da problema
+  // constructor() {
+  //   this.login = this.login.bind(this);
+  // }
 
   async login(req: Request, res: Response) {
     const { email, password } = req.body;
@@ -18,7 +23,7 @@ export default class UserController {
     if (token) {
       return res.status(http.okStatus).json(token);
     }
-    return res.status(http.unauthorize).json({ message: 'Incorrect email or passwordd' });
+    return res.status(http.unauthorize).json(this.message2);
   }
 }
 // o super seria se eu fosse usar uma superclasse
