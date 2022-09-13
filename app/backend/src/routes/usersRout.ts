@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import UserController from '../controllers/usersController';
+import UsersController from '../controllers/usersController';
 import tokenValidation from '../middlers/loginOk';
 // exemplo de com instancia e sem no controller e no middler
 
 const router = Router();
-const user = new UserController();
+const user = new UsersController();
 // -----------GET----------------
 router.get('/validate', tokenValidation.tokenValidatiom);
 // -----------POST---------------

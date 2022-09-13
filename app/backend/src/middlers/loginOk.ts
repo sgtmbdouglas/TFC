@@ -1,11 +1,7 @@
 import { Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
+import { Iuser } from '../Interfaces/Iuser';
 import http from '../utils/metodosHttp';
-
-export interface Iuser {
-  id: number;
-  email: string;
-}
 
 export default class tokenValidation {
   static tokenValidatiom = async (req: Request, res: Response) => {
@@ -17,7 +13,7 @@ export default class tokenValidation {
         return res.status(http.okStatus).json({ role: 'admin' });
       }
       if (decodeBOdy.id === 2) {
-        return res.status(200).json({ role: 'user' });
+        return res.status(http.okStatus).json({ role: 'user' });
       }
       return res.status(http.okStatus).json(decodeBOdy);
     } catch ({ message }) {

@@ -8,7 +8,7 @@ export interface Iuser {
   email: string;
 }
 
-export default class UserController {
+export default class UsersController {
   // metodo estatico = nao pertence a instacia da classe, intancia quando coloca o new class, posso chamar a funcao direto
   // linter reclama sem o this se eu usar public e vou prescisar instanciar para usar na rota
   message1 = { message: 'All fields must be filled' };
