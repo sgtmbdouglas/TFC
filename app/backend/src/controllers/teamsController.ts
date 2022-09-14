@@ -12,7 +12,7 @@ export default class TeamsController {
 
   static async getId(req: Request, res: Response) {
     const { id } = req.params;
-    const dataTeam = await TeamsService.getId(Number(id));
+    const dataTeam = await TeamsService.getId(id);
     res.status(http.okStatus).json(dataTeam);
   }
 }

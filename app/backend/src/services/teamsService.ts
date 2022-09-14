@@ -7,7 +7,7 @@ export default class TeamsService {
     return teams;
   }
 
-  static async getId(id: number) {
+  static async getId(id: string) {
     const dataTeam = await Teams.findByPk(id);
     // console.log('service de teams', dataTeam);
     return dataTeam;

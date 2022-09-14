@@ -32,8 +32,9 @@ describe('Testando rotas', () => {
         it('Retorna todos os times', async () => {
             chaiResponse = await chai.request(app).get("/teams");
             // console.log('testeeeeeeee', chaiResponse);
+            // deep compara se e objeto
             expect(chaiResponse.status).to.equal(http.okStatus);
-            expect(chaiResponse.body).to.eql(teams);
+            expect(chaiResponse.body).to.deep.equal(teams);
         });
         
     });
@@ -52,7 +53,7 @@ describe('Testando rotas', () => {
         it('Retorna um time', async () => {
             chaiResponse = await chai.request(app).get("/teams/1");
             expect(chaiResponse.status).to.equal(http.okStatus);
-            expect(chaiResponse.body).to.eql(team);
+            expect(chaiResponse.body).to.deep.equal(team);
         });
     })
 })

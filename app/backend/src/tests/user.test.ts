@@ -13,7 +13,7 @@ chai.use(chaiHttp);
 const { expect } = chai;
 
 
-describe('Testando rotas'), () => {
+describe('Testando rotas', () => {
   let chaiResponse: Response;
   describe('Testando rota /login usando verbo POST', () => {
     const userReturn = {
@@ -34,7 +34,7 @@ describe('Testando rotas'), () => {
         password: "123456",
       });
       expect(chaiResponse.status).to.equal(http.unauthorize);
-      expect(chaiResponse.body).to.deep.equal({message:"Incorrect email or passwordd"});
+      expect(chaiResponse.body).to.deep.equal({message:"Incorrect email or password"});
     });
 
     it('O usuario existe no banco', async () => {
@@ -67,4 +67,4 @@ describe('Testando rotas'), () => {
   // describe('Testando rota /login usando verbo GET', () => {
   //   // let chaiRequest: Response;
   // })
-}
+});
