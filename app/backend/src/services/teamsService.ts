@@ -6,4 +6,10 @@ export default class TeamsService {
     // console.log('retornou', teams);
     return teams;
   }
+
+  static async getId(id: number) {
+    const dataTeam = await Teams.findByPk(id);
+    // console.log('service de teams', dataTeam);
+    return dataTeam;
+  }
 }

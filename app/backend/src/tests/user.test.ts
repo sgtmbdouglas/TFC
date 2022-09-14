@@ -11,23 +11,21 @@ import http from '../utils/metodosHttp';
 
 chai.use(chaiHttp);
 const { expect } = chai;
-const userReturn = {
-    id: 1,
-    username: 'Admin',
-    role: 'admin',
-    email: 'admin@admin.com',
-    password: '$2a$08$xi.Hxk1czAO0nZR..B393u10aED0RQ1N3PAEXQ7HxtLjKPEZBu.PW'
-  }
+
 
 describe('Testando rotas'), () => {
+  let chaiResponse: Response;
   describe('Testando rota /login usando verbo POST', () => {
-    let chaiResponse: Response;
+    const userReturn = {
+      id: 1,
+      username: 'Admin',
+      role: 'admin',
+      email: 'admin@admin.com',
+      password: '$2a$08$xi.Hxk1czAO0nZR..B393u10aED0RQ1N3PAEXQ7HxtLjKPEZBu.PW'
+    }
 
-    before(async () => {
-      sinon.stub(userModel, "findOne").resolves(userReturn as userModel);
-        // porque nao posso resolver com {{},{}}
-    });
-
+    before(async () => {sinon.stub(userModel, "findOne").resolves(userReturn as userModel)});
+    // porque nao posso resolver com {{},{}}
     after(()=>{(userModel.findOne as sinon.SinonStub).restore()})
 
     it("O usuario nao existe no banco", async () => {
@@ -66,7 +64,7 @@ describe('Testando rotas'), () => {
     expect(chaiResponse.body).to.deep.equal({message:"All fields must be filled"});
     });
   })
-  describe('Testando rota /login usando verbo GET', () => {
-    // let chaiRequest: Response;
-  })
+  // describe('Testando rota /login usando verbo GET', () => {
+  //   // let chaiRequest: Response;
+  // })
 }
