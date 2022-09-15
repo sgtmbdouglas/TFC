@@ -49,3 +49,4 @@ export default Matches;
 
 Matches.belongsTo(Teams, { foreignKey: 'homeTeam', as: 'teamHome' });
 Matches.belongsTo(Teams, { foreignKey: 'awayTeam', as: 'teamAway' });
+// OBS: Você deverá definir os relacionamentos para teamHome e teamAway somente na model de partidas.
