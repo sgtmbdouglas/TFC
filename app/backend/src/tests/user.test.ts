@@ -13,9 +13,9 @@ chai.use(chaiHttp);
 const { expect } = chai;
 
 
-describe('Testando rotas', () => {
+describe('* TESTANDO ROTAS (_8^() *', () => {
   let chaiResponse: Response;
-  describe('Testando rota /login usando verbo POST', () => {
+  describe('** Testando rota /login usando verbo POST **', () => {
     const userReturn = {
       id: 1,
       username: 'Admin',

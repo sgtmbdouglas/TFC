@@ -10,10 +10,10 @@ import http from '../utils/metodosHttp';
 chai.use(chaiHttp);
 const { expect } = chai;
 
-describe('Testando rotas', () => {
+describe('* TESTANDO ROTAS (_8^() *', () => {
     // ver como ajeita 2 de identacao
     let chaiResponse: Response;
-    describe('Testando rota /teams usando verbo GET', () => {
+    describe('** Testando rota /teams usando verbo GET **', () => {
         const teams = [
             {
                 id: 1,
@@ -26,7 +26,6 @@ describe('Testando rotas', () => {
         ]
 
         before(async () => {sinon.stub(TeamsModel, "findAll").resolves(teams as TeamsModel[])});
-
         after(() => {(TeamsModel.findAll as sinon.SinonStub).restore()});
 
         it('Retorna todos os times', async () => {
