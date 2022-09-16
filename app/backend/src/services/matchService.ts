@@ -30,4 +30,15 @@ export default class MatchesService {
     // console.log('bode antes da funcao create ', body);
     return Matches.create(body);
   }
+
+  static async patchMatch(id: number) {
+    const returnUpdate = await Matches.update({ inProgress: false }, { where: { id } });
+    // console.log('patchhh', returnUpdate);
+    if (returnUpdate[0] === 0) return null;
+    return returnUpdate;
+  }
+
+  static async updateGoals(homeTeamGoals: number, awayTeamGoals: number, id: number) {
+    return Matches.update({ homeTeamGoals, awayTeamGoals }, { where: { id } });
+  }
 }

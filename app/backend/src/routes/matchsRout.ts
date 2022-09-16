@@ -7,5 +7,7 @@ const router = Router();
 router.get('/', matchesController.getAll);
 // -----------POST---------------
 router.post('/', tokenValidation.tokenValidatiom, matchesController.postMatch);
-// -----------PUT----------------
+// -----------PATCH----------------
+router.patch('/:id/finish', matchesController.patchMatch);
+router.patch('/:id', matchesController.patchMatchId);
 export default router;
