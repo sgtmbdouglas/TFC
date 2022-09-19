@@ -1,15 +1,12 @@
 import { ILeaderboard } from '../Interfaces/Ileaderboard';
-// import http from '../utils/metodosHttp';
-// import Matches from '../database/models/Matches';
-// import ITeams from '../Interfaces/Ileaderboard';
 import { IMatch } from '../Interfaces/Imatch';
 
-export default class LeaderboardMiddlers {
+export default class AwayleaderboardMiddlers {
   static totalPoints(teamGames: IMatch[]) {
     const win = 3;
     const draw = 1;
     const totalPointsTeam = teamGames.reduce((acc, match) => {
-      if (match.homeTeamGoals > match.awayTeamGoals) {
+      if (match.homeTeamGoals < match.awayTeamGoals) {
         return acc + win;
       } if (match.homeTeamGoals === match.awayTeamGoals) {
         return acc + draw;
@@ -23,7 +20,7 @@ export default class LeaderboardMiddlers {
   }
 
   static totalVictories(teamGames: IMatch[]) {
-    const winsTeam = teamGames.filter((match) => match.homeTeamGoals > match.awayTeamGoals).length;
+    const winsTeam = teamGames.filter((match) => match.homeTeamGoals < match.awayTeamGoals).length;
     return winsTeam;
   }
 
@@ -33,17 +30,17 @@ export default class LeaderboardMiddlers {
   }
 
   public static totalLosses(teamGames: IMatch[]) {
-    const defeats = teamGames.filter((match) => match.homeTeamGoals < match.awayTeamGoals).length;
+    const defeats = teamGames.filter((match) => match.homeTeamGoals > match.awayTeamGoals).length;
     return defeats;
   }
 
   public static goalsFavor(teamGames: IMatch[]) {
-    const homeTotalGoals = teamGames.reduce((acc, match) => acc + match.homeTeamGoals, 0);
+    const homeTotalGoals = teamGames.reduce((acc, match) => acc + match.awayTeamGoals, 0);
     return homeTotalGoals;
   }
 
   public static goalsOwn(teamGames: IMatch[]) {
-    const awayTotalGoals = teamGames.reduce((acc, match) => acc + match.awayTeamGoals, 0);
+    const awayTotalGoals = teamGames.reduce((acc, match) => acc + match.homeTeamGoals, 0);
     return awayTotalGoals;
   }
 
@@ -68,8 +65,7 @@ export default class LeaderboardMiddlers {
     return leaderboard;
   }
 
-  static index(teamGames: IMatch[]) {
-    // array com os jogos 3 obj exmp
+  static indexAway(teamGames: IMatch[]) {
     return {
       totalPoints: this.totalPoints(teamGames),
       totalGames: this.totalGames(teamGames),

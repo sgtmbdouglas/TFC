@@ -10,9 +10,3 @@ export interface ILeaderboard {
   goalsBalance: number;
   efficiency: number;
 }
-
-export default interface ITeams {
-  name: string;
-  totalGames: number;
-  id: number;
-}
