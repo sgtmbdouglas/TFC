@@ -13,7 +13,7 @@ export default class tokenValidation {
     if (!authorization) {
       return res.status(http.unauthorize).json({ message: 'Token must be a valid token' });
     }
-    const decodeBody = jwt.decode(authorization) as unknown as IMatch;
+    const decodeBody = jwt.decode(authorization) as IMatch;
     if (!decodeBody) {
       return res.status(http.unauthorize).json({ message: 'Token must be a valid token' });
     }

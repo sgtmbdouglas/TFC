@@ -20,7 +20,7 @@ export default class MatchesController {
     if (!matche) {
       return res.status(http.notFoundStatus).json({ message: 'There is no team with such id!' });
     }
-    return res.status(http.okStatus).json(matche);
+    return res.status(http.createdStatus).json(matche);
   };
 
   static patchMatch = async (req: Request, res: Response) => {
