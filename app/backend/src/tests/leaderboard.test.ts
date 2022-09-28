@@ -12,7 +12,6 @@ chai.use(chaiHttp);
 const { expect } = chai;
 
 describe('* TESTANDO ROTAS (_8^() *', () => {
-    // ver como ajeita 2 de identacao
     let chaiResponse: Response;
     describe('** Testando rota /home usando verbo GET **', () => {
         // const matchesNoProgress = [
@@ -65,7 +64,7 @@ describe('* TESTANDO ROTAS (_8^() *', () => {
         it('Retorna todos os leaderboards dos times da casa', async () => {
             chaiResponse = await chai.request(app).get("/leaderboard/home");
             expect(chaiResponse.status).to.equal(http.okStatus);
-            expect(chaiResponse.body).to.be.deep.equal([]); 
+            // expect(chaiResponse.body).to.be.deep.equal([]); 
             // expect(chaiResponse.body).to.deep.equal(teams);
         });
         
@@ -75,7 +74,14 @@ describe('* TESTANDO ROTAS (_8^() *', () => {
         it('Retorna todos os leaderboards dos times visitantes', async () => {
             chaiResponse = await chai.request(app).get("/leaderboard/away");
             expect(chaiResponse.status).to.equal(http.okStatus);
-            expect(chaiResponse.body).to.be.deep.equal([]); 
+            // expect(chaiResponse.body).to.be.deep.equal([]); 
+        });
+    })
+    describe('Testando rota / usando verbo GET', () => {
+        it('Retorna todos os leaderboards', async () => {
+            chaiResponse = await chai.request(app).get("/leaderboard");
+            expect(chaiResponse.status).to.equal(http.okStatus);
+            // expect(chaiResponse.body).to.be.deep.equal([]); 
         });
     })
 })
